@@ -18,8 +18,12 @@ import {
   Pagination,
   ReferenceInput,
   Filter,
+  DeleteButton,
+  ShowButton,
 } from "react-admin";
 import { CustomImageField } from "../customs/CustomImageField";
+import { useNavigate } from "react-router-dom";
+import { routes } from "../../constants";
 
 const BookTitle = () => {
   const record = useRecordContext();
@@ -36,12 +40,29 @@ const BookFilter = (props) => (
 
 export const BookList = (props) => {
   const isSmall = useMediaQuery((theme) => theme.breakpoints.down("sm"));
+  const dataProvider = useDataProvider();
+  const navigateTo = useNavigate();
+
+  const handleView = (_id) => {
+    navigateTo(`${routes.book}/${_id}`)
+  }
+
+  const handleDelete = (_id) => {
+    dataProvider
+      .delete("books", { _id })
+      .then(() => {
+        // Xử lý thành công
+      })
+      .catch((error) => {
+        // Xử lý lỗi
+      });
+  };
 
   return (
     <List
       {...props}
       disableAuthentication
-      perPage={20}
+      perPage={10}
       pagination={<Pagination rowsPerPageOptions={[5, 10, 25, 50]} />}
       filters={<BookFilter />}
     >
@@ -61,7 +82,11 @@ export const BookList = (props) => {
           <TextField source="category" />
           <NumberField source="page_number" />
           <DateField source="release_date" />
-          <EditButton />
+          <ShowButton label="View" onClick={handleView}/>
+          <DeleteButton
+            label=""
+            onClick={handleDelete}
+          />
         </Datagrid>
       )}
     </List>
@@ -71,7 +96,6 @@ export const BookList = (props) => {
 export const BookEdit = () => (
   <Edit title={<BookTitle />}>
     <SimpleForm>
-      {/* <TextInput source="_id" disabled/> */}
       <TextInput source="title" />
       <TextInput source="author" />
       <TextInput source="describe" multiline rows={10} />

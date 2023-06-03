@@ -6,21 +6,6 @@ const httpClient = fetchUtils.fetchJson;
 
 // TypeScript users must reference the type `DataProvider`
 export const dataProvider = {
-  /*  getList: (resource, params) => {
-         const { page, perPage } = params.pagination;
-         const { field, order } = params.sort;
-         const query = {
-             sort: JSON.stringify([field, order]),
-             range: JSON.stringify([(page - 1) * perPage, page * perPage - 1]),
-             filter: JSON.stringify(params.filter),
-         };
-         const url = `${apiUrl}/${resource}?${stringify(query)}`;
- 
-         return httpClient(url).then(({ headers, json }) => ({
-             data: json,
-             total: parseInt((headers.get('content-range') || "0").split('/').pop() || 0, 10),
-         }));
-     }, */
   getList: async (resource, params) => {
     const { page, perPage } = params.pagination;
     const { title, author, category } = params.filter;
@@ -47,10 +32,6 @@ export const dataProvider = {
     };
   },
 
-  /* getOne: (resource, params) =>
-        httpClient(`${apiUrl}/${resource}/${params.id}`).then(({ json }) => ({
-            data: json,
-        })), */
   getOne: async (resource, params) => {
     const url = `${apiUrl}/${resource}/${params.id}`;
 
@@ -93,11 +74,6 @@ export const dataProvider = {
     }));
   },
 
-  /* update: (resource, params) =>
-        httpClient(`${apiUrl}/${resource}/${params.id}`, {
-            method: 'PUT',
-            body: JSON.stringify(params.data),
-        }).then(({ json }) => ({ data: json })), */
   update: async (resource, params) => {
     const url = `${apiUrl}/${resource}/${params.id}`;
     const response = await fetchUtils.fetchJson(url, {
