@@ -1,14 +1,26 @@
-import { List, Datagrid, TextField, ReferenceField, EditButton, Edit, SimpleForm, ReferenceInput, TextInput, Create, useRecordContext } from "react-admin";
+import {
+  List,
+  Datagrid,
+  TextField,
+  ReferenceField,
+  EditButton,
+  Edit,
+  SimpleForm,
+  ReferenceInput,
+  TextInput,
+  Create,
+  useRecordContext,
+} from "react-admin";
 
 const PostTitle = () => {
   const record = useRecordContext();
-  return <span>Post {record ? `"${record.title}"` : ''}</span>;
-}
+  return <span>Post {record ? `"${record.title}"` : ""}</span>;
+};
 
 const postFilters = [
   <TextInput source="q" label="Search" alwaysOn />,
-  <ReferenceInput source="userId" label="User" reference="users"/>
-]
+  <ReferenceInput source="userId" label="User" reference="users" />,
+];
 
 export const PostList = () => (
   <List filters={postFilters}>
@@ -16,18 +28,18 @@ export const PostList = () => (
       <TextField source="id" />
       <ReferenceField source="userId" reference="users" />
       <TextField source="title" />
-      <EditButton/>
+      <EditButton />
     </Datagrid>
   </List>
 );
 
 export const PostEdit = () => (
-  <Edit title={<PostTitle/>}>
+  <Edit title={<PostTitle />}>
     <SimpleForm>
-      <TextInput source="id" disabled/>
+      <TextInput source="id" disabled />
       <ReferenceInput source="userId" reference="users" />
       <TextInput source="title" />
-      <TextInput source="body" multiline rows={5}/>
+      <TextInput source="body" multiline rows={5} />
     </SimpleForm>
   </Edit>
 );
@@ -35,9 +47,9 @@ export const PostEdit = () => (
 export const PostCreate = () => (
   <Create>
     <SimpleForm>
-      <ReferenceField source="userId" reference="users"/>
-      <TextInput source="title"/>
-      <TextInput source="body" multiline rows={5}/>
+      <ReferenceField source="userId" reference="users" />
+      <TextInput source="title" />
+      <TextInput source="body" multiline rows={5} />
     </SimpleForm>
   </Create>
-)
+);
