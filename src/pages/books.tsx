@@ -20,14 +20,15 @@ import {
   Filter,
   DeleteButton,
   ShowButton,
+  ImageInput,
 } from "react-admin";
-import { CustomImageField } from "../customs/CustomImageField";
+import { CustomImageField} from "../customs/CustomImageField";
 import { useNavigate } from "react-router-dom";
 import { routes } from "../../constants";
 
 const BookTitle = () => {
   const record = useRecordContext();
-  return <span>Post {record ? `"${record.title}"` : ""}</span>;
+  return <span>Books {record ? `"${record.title}"` : ""}</span>;
 };
 
 const BookFilter = (props) => (
@@ -82,34 +83,48 @@ export const BookList = (props) => {
           <CustomImageField source="cover" />
           <TextField source="title" />
           <TextField source="author" />
-          <TextField source="describe" />
+          <div style={{ maxHeight: "100px", overflowY: "auto" }}>
+            <TextField source="describe" />
+          </div>
           <TextField source="category" />
           <NumberField source="page_number" />
           <DateField source="release_date" />
           <ShowButton label="View" onClick={handleView} />
-          <DeleteButton label="" onClick={handleDelete} />
+          <DeleteButton label="Delete" onClick={handleDelete} />
         </Datagrid>
       )}
     </List>
   );
 };
 
-export const BookEdit = () => (
-  <Edit title={<BookTitle />}>
+const divStyle = {
+  display: "flex",
+  justifyContent: "space-around",
+}
+
+export const BookEdit = (props) => (  
+  <Edit title={<BookTitle />} {...props}>
     <SimpleForm>
-      <TextInput source="title" />
-      <TextInput source="author" />
-      <TextInput source="describe" multiline rows={10} />
-      <TextInput source="category" />
-      <NumberInput source="page_number" />
-      <DateInput source="release_date" />
-      <NumberInput source="price" />
+      <div className="form" style={divStyle}>
+        <div>
+          <TextInput source="title" fullWidth/>
+          <TextInput source="author" fullWidth/>
+          <TextInput source="describe" multiline rows={5} fullWidth/>
+          <TextInput source="category" fullWidth/>
+          <NumberInput source="page_number" fullWidth/>
+          <DateInput source="release_date" fullWidth/>
+          <NumberInput source="price" fullWidth/>
+        </div>
+        <ImageInput source="cover" fullWidth accept="image/jpeg,image/png">
+          <CustomImageField source="cover"/>
+        </ImageInput>
+      </div>
     </SimpleForm>
   </Edit>
 );
 
-export const BookCreate = () => (
-  <Create>
+export const BookCreate = (props) => (
+  <Create {...props}>
     <SimpleForm>
       <TextInput source="title" />
       <TextInput source="author" />
