@@ -1,7 +1,4 @@
-import {
-  Admin,
-  Resource,
-} from "react-admin";
+import { Admin, Resource } from "react-admin";
 import BookIcon from "@mui/icons-material/Book";
 
 import { dataProvider } from "./dataProvider";

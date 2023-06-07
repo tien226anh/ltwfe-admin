@@ -44,8 +44,8 @@ export const BookList = (props) => {
   const navigateTo = useNavigate();
 
   const handleView = (_id) => {
-    navigateTo(`${routes.book}/${_id}`)
-  }
+    navigateTo(`${routes.book}/${_id}`);
+  };
 
   const handleDelete = (_id) => {
     dataProvider
@@ -68,9 +68,13 @@ export const BookList = (props) => {
     >
       {isSmall ? (
         <SimpleList
+          leftIcon={({ record }) => (
+            <CustomImageField record={record} source="cover" />
+          )}
           primaryText={(record) => record.title}
           secondaryText={(record) => record.author}
           tertiaryText={(record) => record.describe}
+          linkType="show"
         />
       ) : (
         <Datagrid>
@@ -82,11 +86,8 @@ export const BookList = (props) => {
           <TextField source="category" />
           <NumberField source="page_number" />
           <DateField source="release_date" />
-          <ShowButton label="View" onClick={handleView}/>
-          <DeleteButton
-            label=""
-            onClick={handleDelete}
-          />
+          <ShowButton label="View" onClick={handleView} />
+          <DeleteButton label="" onClick={handleDelete} />
         </Datagrid>
       )}
     </List>
