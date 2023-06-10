@@ -10,7 +10,5 @@ export const CustomImageField = ({ source }) => {
   //   return <img src={URL.createObjectURL(`${fullURL}`)} style={{ width: "100px" }}/>;
   // }
   if (!record || !record[source]) return null;
-  return (
-    <img src={`${fullURL}`} style={{ width: "100px" }} />
-  );
+  return <img src={`${fullURL}`} style={{ width: "100px" }} />;
 };

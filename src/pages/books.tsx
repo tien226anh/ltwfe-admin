@@ -22,7 +22,7 @@ import {
   ShowButton,
   ImageInput,
 } from "react-admin";
-import { CustomImageField} from "../customs/CustomImageField";
+import { CustomImageField } from "../customs/CustomImageField";
 import { useNavigate } from "react-router-dom";
 import { routes } from "../../constants";
 
@@ -100,23 +100,23 @@ export const BookList = (props) => {
 const divStyle = {
   display: "flex",
   justifyContent: "space-around",
-}
+};
 
-export const BookEdit = (props) => (  
+export const BookEdit = (props) => (
   <Edit title={<BookTitle />} {...props}>
     <SimpleForm>
       <div className="form" style={divStyle}>
         <div>
-          <TextInput source="title" fullWidth/>
-          <TextInput source="author" fullWidth/>
-          <TextInput source="describe" multiline rows={5} fullWidth/>
-          <TextInput source="category" fullWidth/>
-          <NumberInput source="page_number" fullWidth/>
-          <DateInput source="release_date" fullWidth/>
-          <NumberInput source="price" fullWidth/>
+          <TextInput source="title" fullWidth />
+          <TextInput source="author" fullWidth />
+          <TextInput source="describe" multiline rows={5} fullWidth />
+          <TextInput source="category" fullWidth />
+          <NumberInput source="page_number" fullWidth />
+          <DateInput source="release_date" fullWidth />
+          <NumberInput source="price" fullWidth />
         </div>
         <ImageInput source="cover" fullWidth accept="image/jpeg,image/png">
-          <CustomImageField source="cover"/>
+          <CustomImageField source="cover" />
         </ImageInput>
       </div>
     </SimpleForm>
