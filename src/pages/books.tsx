@@ -22,7 +22,7 @@ import {
   ShowButton,
   ImageInput,
 } from "react-admin";
-import { CustomImageField} from "../customs/CustomImageField";
+import { CustomImageField } from "../customs/CustomImageField";
 import { useNavigate } from "react-router-dom";
 import { routes } from "../../constants";
 
@@ -83,7 +83,7 @@ export const BookList = (props) => {
           <CustomImageField source="cover" />
           <TextField source="title" />
           <TextField source="author" />
-          <div style={{ maxHeight: "100px", overflowY: "auto",  }}>
+          <div style={{ maxHeight: "100px", overflowY: "auto" }}>
             <TextField source="describe" />
           </div>
           <TextField source="category" />
@@ -100,20 +100,20 @@ export const BookList = (props) => {
 const divStyle = {
   display: "flex",
   justifyContent: "space-around",
-}
+};
 
-export const BookEdit = (props) => (  
+export const BookEdit = (props) => (
   <Edit title={<BookTitle />} {...props}>
     <SimpleForm>
       <div className="form" style={divStyle}>
         <div>
-          <TextInput required source="title" fullWidth/>
-          <TextInput required source="author" fullWidth/>
-          <TextInput required source="describe" multiline rows={5} fullWidth/>
-          <TextInput required source="category" fullWidth/>
-          <NumberInput source="page_number" fullWidth/>
-          <DateInput source="release_date" fullWidth/>
-          <NumberInput source="price" fullWidth/>
+          <TextInput required source="title" fullWidth />
+          <TextInput required source="author" fullWidth />
+          <TextInput required source="describe" multiline rows={5} fullWidth />
+          <TextInput required source="category" fullWidth />
+          <NumberInput source="page_number" fullWidth />
+          <DateInput source="release_date" fullWidth />
+          <NumberInput source="price" fullWidth />
         </div>
       </div>
     </SimpleForm>
@@ -123,13 +123,13 @@ export const BookEdit = (props) => (
 export const BookCreate = (props) => (
   <Create {...props}>
     <SimpleForm>
-      <TextInput required source="title" fullWidth/>
-      <TextInput required source="author" fullWidth/>
-      <TextInput required source="describe" multiline rows={10} fullWidth/>
-      <TextInput required source="category" fullWidth/>
-      <NumberInput source="page_number" fullWidth/>
-      <DateInput source="release_date" fullWidth/>
-      <NumberInput source="price" fullWidth/>
+      <TextInput required source="title" fullWidth />
+      <TextInput required source="author" fullWidth />
+      <TextInput required source="describe" multiline rows={10} fullWidth />
+      <TextInput required source="category" fullWidth />
+      <NumberInput source="page_number" fullWidth />
+      <DateInput source="release_date" fullWidth />
+      <NumberInput source="price" fullWidth />
     </SimpleForm>
   </Create>
 );
