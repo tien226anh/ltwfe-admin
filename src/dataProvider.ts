@@ -102,11 +102,19 @@ export const dataProvider = {
   create: (resource, params) =>
     httpClient(`${apiUrl}/${resource}`, {
       method: "POST",
-      body: JSON.stringify(params.data),
+      body: JSON.stringify({
+        title: params.data.title,
+        author: params.data.author,
+        describe: params.data.describe,
+        category: params.data.category,
+        page_number: params.data.page_number,
+        release_date: params.data.release_date,
+        price: params.data.price,
+      }),
     }).then(({ json }) => ({
       data: {
         ...params.data,
-        _id: json._id,
+        id: json.id,
       },
     })),
 

@@ -40,25 +40,6 @@ export const CustomView = (props) => {
         <NumberField source="page_number" />
         <DateField source="release_date" />
         <NumberField source="price" />
-
-        {!isEditMode && (
-          <Button label="Edit" onClick={handleEdit} variant="outlined" />
-        )}
-
-        {isEditMode && (
-          <>
-            {/* Display fields for editing */}
-            <TextInput source="title" />
-            <TextInput source="author" />
-            <TextInput source="describe" multiline rows={10} />
-            <TextInput source="category" />
-            <NumberInput source="page_number" />
-            <DateInput source="release_date" />
-            <NumberInput source="price" />
-            <Button label="Save" onClick={handleSave} variant="outlined" />
-            <Button label="Cancel" onClick={handleCancel} variant="outlined" />
-          </>
-        )}
       </SimpleShowLayout>
     </Show>
   );
